@@ -19,6 +19,19 @@ fn main() {
     // In general the Rust compiler won't make any assumptions about the code, and will throw
     // errors if there is any ambiguity.
 
+    // Rust has two compound types, those being tuples and arrays.
+
+    // A tuple is a general way of grouping together a number of values with a variety of types into
+    // one compound type. Tuples have a fixed length, once declared they cannot grow or shrink, and
+    // in the example below the types can be inferred.
+    let tup: (i32, f64, u8) = (500, 6.4, 1);
+    println!("The first value in the tuple is {}", tup.0);
+
+    // Use pattern matching to destructure a tuple. The underscore denotes we wont be using
+    // those variables.
+    let (_x, y, _z) = tup;
+    println!("The value of y is: {y}");
+
     // Declare an array
     let values_array = [1, 2, 3, 4, 5];
     println!("The first value in the array is {}", values_array[0]);
@@ -48,7 +61,8 @@ fn main() {
 
     println!("The sum of the two array slices is {}", sum_slice);
 
-    // Rusts arrays can not grow once declared. To create a collection that can grow use a vector.
+    // Rusts arrays can not grow once declared. Rust does include a number of collection types
+    // such as a vector (vec) which is a growable array type.
     let mut values_vector = vec![1, 2, 3, 4];
     let mut sum_vector = 0;
     values_vector.push(5);
@@ -56,6 +70,10 @@ fn main() {
         sum_vector = add(sum_vector, n);
     }
     println!("The sum of the values in the vector is {}", sum_vector);
+
+    // Refer to https://doc.rust-lang.org/std/collections/index.html for more information on
+    // collections.
+
 }
 
 fn add(n1: i32, n2: i32) -> i32 {
